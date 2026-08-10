@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0e17;
+  --bg-elev: #0f141f;
+  --surface: #141a27;
+  --surface-2: #1a2233;
+  --border: #232b3d;
+  --border-soft: #1a2130;
+  --text: #e9edf5;
+  --text-dim: #9aa3b8;
+  --text-faint: #5c657a;
+  --amber: #f0b429;
+  --amber-dim: #8a691f;
+  --teal: #4fd1c5;
+  --violet: #8b7cf6;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  color-scheme: dark;
+}
+
+html.light {
+  --bg: #f6f7fa;
+  --bg-elev: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eff1f6;
+  --border: #e1e4ec;
+  --border-soft: #eaedf3;
+  --text: #12151f;
+  --text-dim: #565f75;
+  --text-faint: #8992a6;
+  --amber: #b3790a;
+  --amber-dim: #d9a94a;
+  --teal: #0f9b8e;
+  --violet: #6c56e0;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background .35s ease, color .35s ease;
+}
+
+::selection { background: var(--amber); color: #171207; }
+
+.font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
+.font-mono { font-family: var(--font-mono); }
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.gradient-border {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 15px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--amber), transparent 40%, var(--teal));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events: none;
+}
+.gradient-border:hover::before { opacity: 1; }
