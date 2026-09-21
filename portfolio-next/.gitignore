@@ -4,3 +4,8 @@ out
 .env*
 .DS_Store
 *.log
+
+# Local/generated files
+.vscode/
+next-env.d.ts
+
